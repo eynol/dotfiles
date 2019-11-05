@@ -1,0 +1,3 @@
+brew "tomcat@7"
+brew "redis"
+brew "maven"

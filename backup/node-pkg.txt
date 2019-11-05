@@ -1,0 +1,7 @@
+create-react-app
+eslint
+gatsby
+chokidar-cli
+serve
+parcel-bundler
+typescript
