@@ -1,0 +1,3 @@
+SYMLINK_DIRS="backups bundle undodir"
+# TAGS="ruby"
+EXCLUDES="README.md LICENSE install.sh"
