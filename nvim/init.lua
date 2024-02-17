@@ -1,0 +1,2 @@
+print("test")
+require('basic')

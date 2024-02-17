@@ -18,6 +18,9 @@ Spend time writing a script and save time at some time in the future.
 
 Config files can be shared between machines or operating systems. Don't waste time to google it and configure it again and again.
 
+> nerd font download [link](https://www.nerdfonts.com/font-downloads)
+
+
 ## Other Intents
 
 IOT stuff.
