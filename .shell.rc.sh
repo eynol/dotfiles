@@ -10,6 +10,7 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 [ -s "$HOME/.shell.device.sh" ] && source $HOME/.shell.device.sh
 
 # NVM config
+export NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
