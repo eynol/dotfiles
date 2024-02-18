@@ -1,0 +1,1 @@
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch file_to_remove' --prune-empty -- --all
