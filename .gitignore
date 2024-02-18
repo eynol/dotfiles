@@ -1,3 +1,21 @@
 .DS_Store
 *.log
 *.edit.sh
+
+# ignore by default
+.*
+
+# User data
+Applications
+Documents
+Downloads
+byted
+Library
+Movies
+Music
+Pictures
+Public
+repos
+projects
+project
+test

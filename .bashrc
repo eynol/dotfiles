@@ -41,78 +41,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 # }}}
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.bin:$HOME/bin:$PATH
+[ -s "$HOME/.shell.rc.sh" ] && source $HOME/.shell.rc.sh
 
 
 
-# Global functions (aka complex aliases) {{{
-function f {
-  find . -type f | grep -v .svn | grep -v .git | grep -i $1
-}
-
-
-# }}}
-# see http://github.com/durdn/cfg/
-# durdn/cfg related commands {{{
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-function _dur {
-  case $1 in
-  create|cr)
-    echo "disabled"
-    ;;
-  list|li)
-    curl --user $2:$3 https://api.bitbucket.org/1.0/user/repositories 2> /dev/null | grep "name" | sed -e 's/\"//g' | col 2 | sort | uniq | column
-    ;;
-  clone|cl)
-    git clone git@bitbucket.org:durdn/$2.git
-    ;;
-  move|mv)
-    git remote add bitbucket git@bitbucket.org:durdn/$(basename $(pwd)).git
-    git push --all bitbucket
-    ;;
-  trackall|tr)
-    #track all remote branches of a project
-    for remote in $(git branch -r | grep -v master ); do git checkout --track $remote ; done
-    ;;
-  key|k)
-    #track all remote branches of a project
-    ssh $2 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
-    ;;
-  fun|f)
-    #list all custom bash functions defined
-    typeset -F | col 3 | grep -v _ | xargs | fold -sw 60
-    ;;
-  def|d)
-    #show definition of function $1
-    typeset -f $2
-    ;;
-  help|h|*)
-    echo "[dur]dn shell automation tools - (c) 2011 Nicola Paolucci nick@durdn.com"
-    echo "commands available:"
-    echo " [cr]eate, [li]st, [cl]one"
-    echo " [i]nstall,[m]o[v]e, [re]install"
-    echo " [f]fun lists all bash functions defined in .bashrc"
-    echo " [def] <fun> lists definition of function defined in .bashrc"
-    echo " [k]ey <host> copies ssh key to target host"
-    echo " [tr]ackall], [h]elp"
-    ;;
-  esac
-}
-
-# }}}
 
 # youtube-dl -F {url}
 # youtube-dl -f {audio}+{video} {url}
 # youtube-dl -f {audio}+{video} {url} --playlist-start 22
 alias youtube-dl-playlist="youtube-dl  --write-auto-sub --sub-lang en,zh,zh-tw,jp,zh-hans --output '%(playlist)s/%(playlist_index)s- %(title)s.%(ext)s'"
-
-function fzfo(){
-  file=`fzf`
-  dirname=`dirname $file`
-  cd $dirname
-}
 
 alias agc='ag --noheading --column'
 
@@ -124,7 +61,7 @@ case $- in
 esac
 
 
-# based on Chen bin @  https://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know 
+# based on Chen bin @  https://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know
 export HISTSIZE=32768
 shopt -s histverify
 
@@ -154,44 +91,7 @@ fi
 
 
 
-# OSX specific config {{{
-if [ $(uname) == "Darwin" ]; then
-  export TERM=xterm-256color
-  export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python3/3.4.1/bin:$HOME/bin:$PATH
-  export MANPATH=/opt/local/share/man:$MANPATH
-
-  #aliases {{{
-
-  # }}}
-
-  #open macvim
-  function gvim {
-    if [ -e $1 ];
-      then open -a MacVim $@;
-      else touch $@ && open -a MacVim $@;
-    fi
-  }
-  #open visual studio code
-  function vsc {
-    if [ -e $1 ];
-      then open -a Visual\ Studio\ Code $@;
-      else touch $@ && -a Visual\ Studio\ Code $@;
-    fi
-  }
-
-
-  #homebrew git autocompletions {{{
-  if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-    . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-  fi
-  #}}}
-
-fi
-
-# }}}
-
-
-# tip:3 
+# tip:3
 # $ history|grep "keyword"|grep "keyword2"
 # > 233
 # $ !233
@@ -199,4 +99,4 @@ fi
 # alias h=history
 
 # tip 6
-# PROMPT_COMMAND="history -a" 
+# PROMPT_COMMAND="history -a"
