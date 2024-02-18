@@ -3,6 +3,8 @@ export PATH=$HOME/.bin:$HOME/bin:$HOME/.local/bin:$PATH
 
 # rust env setup
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 
 [ -s "$HOME/.shell.secret.sh" ] && source $HOME/.shell.secret.sh
 [ -s "$HOME/.shell.device.sh" ] && source $HOME/.shell.device.sh

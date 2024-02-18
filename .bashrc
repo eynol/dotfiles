@@ -1,3 +1,13 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 ### *** === BASH CONFIG BEGIN
 # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 # export PATH="/usr/local/opt/ncurses/bin:$PATH"
@@ -25,19 +35,34 @@ export DEBUG_SH_LOAD=$DEBUG_SH_LOAD:.bashrc
 export SHELL_SESSION_HISTORY=0
 export HISTFILESIZE=999999
 export HISTSIZE=999999
+
 export HISTCONTROL=ignoredups:ignorespace
 shopt -s checkwinsize
 shopt -s progcomp
+# append to the history file, don't overwrite it
+shopt -s histappend
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 #!! sets vi mode for shell
 # set -o vi
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  fi
 fi
 # }}}
 

@@ -15,7 +15,7 @@
 # @raycast.packageName Translator
 
 # @raycast.argument1 { "type": "text", "placeholder": "word" }
-echo $PATH
+[ -s ~/.bashrc ] && source ~/.bashrc
 #if [ -f ~/.zshenv ] ;then
 #  . ~/.zshenv
 #fi
