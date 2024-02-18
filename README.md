@@ -27,7 +27,7 @@ This is the very first repo to clone after switch to a new machine. The purposes
 ## Install
 
 ```bash
-curl -Lks https://github.com/eynol/dotfiles/raw/master/shell/install-dotfiles.sh | /bin/bash
+curl -Lks https://github.com/eynol/dotfiles/raw/master/scripts/install-dotfiles.sh | /bin/bash
 ```
 
 ## Instruction
