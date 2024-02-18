@@ -13,9 +13,9 @@
 # Optional parameters:
 # @raycast.icon 🟦
 # @raycast.packageName Translator
-
 # @raycast.argument1 { "type": "text", "placeholder": "word" }
-[ -s ~/.bashrc ] && source ~/.bashrc
+#
+[ -s $HOME/.bashrc ] && source $HOME/.bashrc
 #if [ -f ~/.zshenv ] ;then
 #  . ~/.zshenv
 #fi

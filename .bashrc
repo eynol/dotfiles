@@ -2,12 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
 ### *** === BASH CONFIG BEGIN
 # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 # export PATH="/usr/local/opt/ncurses/bin:$PATH"
@@ -67,7 +61,6 @@ fi
 # }}}
 
 [ -s "$HOME/.shell.rc.sh" ] && source $HOME/.shell.rc.sh
-
 
 
 
