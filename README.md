@@ -1,4 +1,4 @@
-# Intro
+# dotfiles
 
 This is the very first repo to clone after switch to a new machine. The purposes of this repo are listed below.
 
@@ -24,15 +24,15 @@ This is the very first repo to clone after switch to a new machine. The purposes
 
     IOT stuff.
 
+## Install
 
-# Instruction
+```bash
+curl -Lks https://github.com/eynol/dotfiles/raw/master/shell/install-dotfiles.sh | /bin/bash
+```
 
-Check out this article: 
+## Instruction
 
-    https://www.atlassian.com/git/tutorials/dotfiles
+Check out this article: [https://www.atlassian.com/git/tutorials/dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)
 
 It shows a simple way to backup your dotfiles.
-
-# How to recover this repo
-
 
