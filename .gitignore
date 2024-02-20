@@ -3,6 +3,7 @@
 *.edit.sh
 # ignore by default
 /*
+!bin/
 !.nvim-profiles
 !scripts
 !os-backup

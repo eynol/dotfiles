@@ -7,10 +7,10 @@ DIR_NAME=$(cd $(dirname $0);pwd)
 NVIM_PATH=$HOME/.config/nvim
 
 
-select name in $(ls $DIR_NAME/.nvim-profiles)
+select name in $(ls $DIR_NAME/../.nvim-profiles)
 do
 
-    ln -vsnf $DIR_NAME/.nvim-profiles/$name $NVIM_PATH
+    ln -vsnf $DIR_NAME/../.nvim-profiles/$name $NVIM_PATH
     break
     
 done
