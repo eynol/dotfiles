@@ -6,18 +6,5 @@
 .*
 
 # User data
-Applications
-Documents
-Downloads
-Desktop
-byted
-Library
-Movies
-go
-Music
-Pictures
-Public
-repos
-projects
-project
-test
+*
+!.nvim-profiles/*
