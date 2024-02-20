@@ -1,7 +1,6 @@
 .DS_Store
 *.log
 *.edit.sh
-
 # ignore by default
 /*
 !.nvim-profiles
