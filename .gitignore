@@ -3,8 +3,8 @@
 *.edit.sh
 
 # ignore by default
-.*
-
+/*
+!.nvim-profiles
+!scripts
+!os-backup
 # User data
-*
-!.nvim-profiles/*
