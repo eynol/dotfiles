@@ -105,3 +105,4 @@ fi
 
 # tip 6
 # PROMPT_COMMAND="history -a"
+export PATH=/Users/bytedance/.local/bin:$PATH
