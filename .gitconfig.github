@@ -1,0 +1,15 @@
+[user]
+	name = eynol
+	email = 625608852@qq.com
+
+# git config -l --show-origin --show-scope to debug config
+# include following content to your .gitconfig file 
+#
+# [includeIf "gitdir:C:/Projects/github.com/"]
+#   path = .gitconfig.github # relative path 
+#[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+#  path = ~/.gitconfig.github
+#
+#[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+#  path = ~/.gitconfig.github
+
