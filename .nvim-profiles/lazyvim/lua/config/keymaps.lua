@@ -8,14 +8,17 @@ local map = vim.keymap.set
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Try get hover info" })
 
 if vim.fn.getenv("USER") == "bytedance" then
+  local get_git_root_dir = function()
+    local git_root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" })
+    return git_root:gsub("\n", "")
+  end
   local eden_lint = function(is_staged)
     local is_git = os.execute("git rev-parse HEAD > /dev/null 2>&1")
     if is_git ~= 0 then
       print("is_git", is_git)
       return
     end
-    local git_root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" })
-    git_root = string.gsub(git_root, "\n", "")
+    local git_root = get_git_root_dir()
     local bin_file = git_root .. "/infra/node_modules/.bin/eden-lint"
     -- print(vim.inspect(bin_file))
     local command_path = vim.fs.normalize(bin_file)
@@ -27,8 +30,7 @@ if vim.fn.getenv("USER") == "bytedance" then
     print(vim.inspect(files))
   end
   local eden_current = function(file)
-    local git_root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" })
-    git_root = string.gsub(git_root, "\n", "")
+    local git_root = get_git_root_dir()
     local bin_file = git_root .. "/infra/node_modules/.bin/eden-lint"
     -- print(vim.inspect(bin_file))
     local command_path = vim.fs.normalize(bin_file)

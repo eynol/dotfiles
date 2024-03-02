@@ -31,6 +31,12 @@ else
 	[ -z 0]
 fi
 
+_zsh_ifdo() {
+	if [ -n "$ZSH_VERSION" ]; then
+		$*
+	fi
+}
+
 # iterm2 config load
 [ -n "$ZSH_VERSION" ] &&
 	[ -s "${HOME}/.iterm2_shell_integration.zsh" ] &&
@@ -61,6 +67,10 @@ function config-github-user-local() {
 # see http://github.com/durdn/cfg/
 # durdn/cfg related commands {{{
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# zsh completion for config command. Treat 'config' as git
+_zsh_ifdo compdef config=git
+
 function _dur {
 	case $1 in
 	create | cr)
