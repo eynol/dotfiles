@@ -19,6 +19,14 @@ export NVM_DIR="$HOME/.nvm"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# editor
+export VISUAL=nvim
+export EDITOR=nvim
+
+alias v='nvim'
+alias lg='lazygit'
+alias t='tmux'
+
 # fzf config
 if [ -n "$ZSH_VERSION" ]; then
 	# assume Zsh
