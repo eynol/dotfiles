@@ -26,6 +26,7 @@ export EDITOR=nvim
 alias v='nvim'
 alias lg='lazygit'
 alias t='tmux'
+alias ta='tmux attach'
 
 # fzf config
 if [ -n "$ZSH_VERSION" ]; then
