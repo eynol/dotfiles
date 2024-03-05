@@ -8,10 +8,12 @@ if ! git rev-parse --show-toplevel --quiet 1>/dev/null 2>&1; then
 	exit 128
 fi
 
+git_root_dir="$(git rev-parse --show-toplevel)"
 dont_keep=
 
 # hide changed skip-worktree files
 hide() {
+	cd $git_root_dir
 	# list files that is skip-worktree
 	skiped_files="$(git ls-files -t | grep '^S' | sed 's/S \(.*\)/\1/')"
 	if [ -z "$skiped_files" ]; then
@@ -61,12 +63,14 @@ recover() {
 	else
 		git stash apply -q $latest_stash
 	fi
+	cd $git_root_dir
 	xargs git update-index --skip-worktree -- <<<$stashed_files
 
 	echo your lawyer has done the job
 }
 
 list() {
+	cd $git_root_dir
 	git ls-files -t | grep '^S' | sed 's/S \(.*\)/\1/'
 }
 create() {
