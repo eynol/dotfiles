@@ -64,6 +64,7 @@ function fzfo() {
 function config-github-user-global() {
 	git config --global user.name kyle.tk
 	git config --global user.email 62560852@qq.com
+	git config --global core.quotePath false
 }
 function config-github-user-local() {
 	git config --local user.name kyle.tk
@@ -75,6 +76,7 @@ function config-github-user-local() {
 # see http://github.com/durdn/cfg/
 # durdn/cfg related commands {{{
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # zsh completion for config command. Treat 'config' as git
 _zsh_ifdo compdef config=git
