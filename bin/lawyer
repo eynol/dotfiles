@@ -1,0 +1,107 @@
+#!/bin/bash
+set -e
+
+# lawyer protect my files on local mathine, prevent them traced by git
+
+if ! git rev-parse --show-toplevel --quiet 1>/dev/null 2>&1; then
+	echo not in git repe, exit
+	exit 128
+fi
+
+dont_keep=
+
+# hide changed skip-worktree files
+hide() {
+	# list files that is skip-worktree
+	skiped_files="$(git ls-files -t | grep '^S' | sed 's/S \(.*\)/\1/')"
+	if [ -z "$skiped_files" ]; then
+		echo no skip files
+		exit 0
+	fi
+	echo --- skip files ---
+	cat <<<"$skiped_files"
+	echo ------------------
+	cat <<<"$skiped_files" | xargs git update-index --no-skip-worktree --
+	cat <<<"$skiped_files" | xargs git stash push -m "-layer skip-$(date +"%Y-%m-%d-%H%M")" --
+	# echo $skiped_files | xargs -I {} git update-index --no-skip-worktree {}
+}
+
+getStashList() {
+	IFS=
+	git stash list --grep='layer skip'
+}
+# recover changed skip-worktree files from stash
+recover() {
+
+	stashed="$(getStashList)"
+	if [ -z "$stashed" ]; then
+		echo no stash records
+		exit 0
+	fi
+	record_cout="$(getStashList | wc -l)"
+	latest_stash=
+	stashed_files=
+
+	getStashList | cat
+
+	if [ 1 -eq $record_cout ]; then
+		latest_stash="$(sed -e "s/^\(stash@{[0-9]*}\):.*/\1/g" <<<$stashed)"
+		echo "only one record, auto use it"
+	else
+		echo please choose one record to recover
+		select option in $(getStashList | sed -e "s/^\(stash@{[0-9]*}\):.*/\1/g" | tr '\n' ' '); do
+			latest_stash=$option
+			break
+		done
+	fi
+	stashed_files="$(git stash show --name-only $latest_stash)"
+
+	if [ -n "$dont_keep" ]; then
+		git stash pop -q $latest_stash
+	else
+		git stash apply -q $latest_stash
+	fi
+	xargs git update-index --skip-worktree -- <<<$stashed_files
+
+	echo your lawyer has done the job
+}
+
+list() {
+	git ls-files -t | grep '^S' | sed 's/S \(.*\)/\1/'
+}
+create() {
+	if [ -n "$dont_keep" ]; then
+		git update-index --no-skip-worktree -- $*
+	else
+		git update-index --skip-worktree -- $*
+	fi
+}
+
+while getopts ":a:dhrl" opt; do
+	case "$opt" in
+	a)
+		create ${OPTARG}
+		exit 0
+		;;
+	l)
+		list
+		exit 0
+		;;
+	d)
+		dont_keep=1
+		;;
+	h)
+		hide && exit 0
+		;;
+	r)
+		recover && exit 0
+		;;
+	?)
+		echo ?
+		exit 1
+		;;
+	*)
+		echo default
+		;;
+	esac
+done
