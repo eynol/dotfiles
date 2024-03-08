@@ -36,7 +36,12 @@ if vim.fn.getenv("USER") == "bytedance" then
     local command_path = vim.fs.normalize(bin_file)
     local currentFilePath = vim.fn.expand("%:p")
 
-    local result = vim.fn.system(command_path .. " --fix " .. currentFilePath)
+    local command = command_path .. " --fix " .. currentFilePath
+    vim.notify("call:" .. command)
+    local result = vim.fn.system(command)
+
+    -- vim.notify(vim.inspect(result))
+    -- vim.notify(result)
     print(result)
   end
   map("n", "<leader>clc", function()
@@ -49,3 +54,15 @@ if vim.fn.getenv("USER") == "bytedance" then
     eden_lint(true)
   end, { desc = "Eden-lint staged" })
 end
+
+local TSComment = function()
+  local mode = vim.fn.mode()
+  vim.cmd('echomsg "' .. mode .. '"')
+  if string.match(mode, "n") then
+    return [[:s:^\(\s*/\)/\(.*\)$:\1**\2*/:<cr>]]
+  else
+    return [[:s:^\(\s*/\)/\(.*\)$:\1**\2*/:<cr>]]
+  end
+end
+map("n", "gcC", TSComment, { expr = true, desc = "TSComment Line" })
+map("v", "gC", TSComment, { expr = true, desc = "TSComment Convert" })
