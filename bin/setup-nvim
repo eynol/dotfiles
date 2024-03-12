@@ -10,7 +10,11 @@ NVIM_PATH=$HOME/.config/nvim
 select name in $(ls $DIR_NAME/../.nvim-profiles)
 do
 
-    ln -vsnf $DIR_NAME/../.nvim-profiles/$name $NVIM_PATH
+    if [ -z "$LOCALAPPDATA" ] ;then
+      ln -vsnf $DIR_NAME/../.nvim-profiles/$name $NVIM_PATH
+    else
+      ln -vsnf $DIR_NAME/../.nvim-profiles/$name $LOCALAPPDATA/nvim
+    fi
     break
     
 done
