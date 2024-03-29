@@ -28,10 +28,16 @@ if vim.fn.getenv("USER") == "bytedance" then
     local files = vim.fn.system("git diff --name-only " .. (is_staged and "--cached" or ""))
     files = files:gsub("\n", " ")
 
-    local command = command_path .. " --fix " .. files
+    if files:len() == 0 then
+      print(vim.inspect("nothing changed"))
+      return
+    end
+
+    local command = command_path .. " format " .. files
     print(vim.inspect(command))
     local result = vim.fn.system(command)
     print(vim.inspect(result))
+    vim.cmd("e")
   end
   local eden_current = function(file)
     local git_root = get_git_root_dir()
@@ -40,9 +46,10 @@ if vim.fn.getenv("USER") == "bytedance" then
     local command_path = vim.fs.normalize(bin_file)
     local currentFilePath = vim.fn.expand("%:p")
 
-    local command = command_path .. " --fix " .. currentFilePath
+    local command = command_path .. " format " .. currentFilePath
     vim.notify("call:" .. command)
     local result = vim.fn.system(command)
+    vim.cmd("e")
 
     -- vim.notify(vim.inspect(result))
     -- vim.notify(result)
