@@ -1,7 +1,8 @@
 [user]
 	name = eynol
 	email = 625608852@qq.com
-
+[branch]
+    sort = -committerdate
 # git config -l --show-origin --show-scope to debug config
 # include following content to your .gitconfig file 
 #
