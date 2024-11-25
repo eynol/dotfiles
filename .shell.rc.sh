@@ -24,6 +24,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 alias v='nvim'
+alias s="kitten ssh"
 alias lg='lazygit'
 alias t='tmux'
 
