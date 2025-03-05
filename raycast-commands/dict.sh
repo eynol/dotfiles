@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/sh
 
 # Raycast Script Command Template
 #
@@ -15,7 +15,9 @@
 # @raycast.packageName Translator
 # @raycast.argument1 { "type": "text", "placeholder": "word" }
 #
-[ -s $HOME/.bashrc ] && source $HOME/.bashrc
+# [ -s $HOME/.bashrc ] && source $HOME/.bashrc
+
+[ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 #if [ -f ~/.zshenv ] ;then
 #  . ~/.zshenv
 #fi
