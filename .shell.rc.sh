@@ -19,7 +19,7 @@ fi
 
 # fnm
 if command -v fnm 2>&1 >/dev/null; then
-  echo fnm exist
+  export FNM_NODE_DIST_MIRROR=https://mirrors.ustc.edu.cn/node/
   eval "$(fnm env)"
 fi
 # deno config
