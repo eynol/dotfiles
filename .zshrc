@@ -1,3 +1,6 @@
+# use following line to record zsh bootstrap
+# and uze  zprof to display result at end of this file
+# zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -101,3 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -s "$HOME/.shell.rc.sh" ] && source $HOME/.shell.rc.sh
+
+# performance detect
+# zprof
+
