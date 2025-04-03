@@ -1,5 +1,6 @@
 # User config paths
 export PATH=$HOME/.bin:$HOME/bin:$HOME/.local/bin:$PATH
+[ -d  $HOME/device-scripts ] && export PATH=$HOME/device-scripts:$PATH
 
 # rust env setup
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
@@ -85,6 +86,7 @@ function config-github-user-local() {
 # durdn/cfg related commands {{{
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias zshconfig="$EDITOR ~/.zshrc"
 
 # zsh completion for config command. Treat 'config' as git
 _zsh_ifdo compdef config=git
