@@ -1,6 +1,7 @@
 # User config paths
 export PATH=$HOME/.bin:$HOME/bin:$HOME/.local/bin:$PATH
 [ -d  $HOME/device-scripts ] && export PATH=$HOME/device-scripts:$PATH
+[ -d  $HOME/.codeium/windsurf/bin ] && export PATH=$HOME/.codeium/windsurf/bin:$PATH
 
 # rust env setup
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
