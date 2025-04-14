@@ -3,6 +3,8 @@
 	email = 625608852@qq.com
 [branch]
     sort = -committerdate
+[core]
+    quotePath = false
 # git config -l --show-origin --show-scope to debug config
 # include following content to your .gitconfig file 
 #
@@ -13,4 +15,10 @@
 #
 #[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
 #  path = ~/.gitconfig.github
+# 
+# [includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
+#   path = ~/.gitconfig.github
+# 
+# [includeIf "hasconfig:remote.*.url:git@gitlab.com:*/**"]
+#   path = ~/.gitconfig.github
 
