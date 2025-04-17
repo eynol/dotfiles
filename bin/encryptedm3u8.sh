@@ -1,0 +1,1 @@
+/Users/kyletao/projects/loc-script/m3u8/encyptedm3u8.sh

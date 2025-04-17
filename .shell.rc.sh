@@ -1,5 +1,5 @@
 # User config paths
-export PATH=$HOME/.bin:$HOME/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.bin:$HOME/bin:$HOME/.local/bin:$HOME/.docker/bin:$PATH
 [ -d  $HOME/device-scripts ] && export PATH=$HOME/device-scripts:$PATH
 [ -d  $HOME/.codeium/windsurf/bin ] && export PATH=$HOME/.codeium/windsurf/bin:$PATH
 
