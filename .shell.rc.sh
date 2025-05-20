@@ -1,7 +1,7 @@
 # User config paths
 export PATH=$HOME/.bin:$HOME/bin:$HOME/.local/bin:$HOME/.docker/bin:$PATH
-[ -d  $HOME/device-scripts ] && export PATH=$HOME/device-scripts:$PATH
-[ -d  $HOME/.codeium/windsurf/bin ] && export PATH=$HOME/.codeium/windsurf/bin:$PATH
+[ -d $HOME/device-scripts ] && export PATH=$HOME/device-scripts:$PATH
+[ -d $HOME/.codeium/windsurf/bin ] && export PATH=$HOME/.codeium/windsurf/bin:$PATH
 
 # rust env setup
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
@@ -169,10 +169,10 @@ if [ $(uname) = "Darwin" ]; then
   #}}}
 
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-  export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-  export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-  export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+  export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
+  export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+  export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
+  export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
   export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
 fi
