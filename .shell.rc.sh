@@ -24,6 +24,19 @@ if command -v fnm 2>&1 >/dev/null; then
   export FNM_NODE_DIST_MIRROR=https://mirrors.ustc.edu.cn/node/
   eval "$(fnm env)"
 fi
+
+
+# archlinux update command
+if command -v pacman 2>&1 >/dev/null;
+then
+  alias update="sudo pacman -Syu"
+fi
+# apt update
+if command -v apt 2>&1 >/dev/null;
+then
+  alias update="sudo apt update &&sudo apt upgrade"
+fi
+#
 # deno config
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"

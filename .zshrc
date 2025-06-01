@@ -35,7 +35,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 zstyle ':omz:update' frequency 34
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -44,7 +44,7 @@ zstyle ':omz:update' frequency 34
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -103,6 +103,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Don't add certain commands to the history file.
+
+export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history.
+
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#
+# read common shared config
 [ -s "$HOME/.shell.rc.sh" ] && source $HOME/.shell.rc.sh
 
 # performance detect
