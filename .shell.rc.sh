@@ -187,6 +187,7 @@ if [ $(uname) = "Darwin" ]; then
   export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
   export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
   export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+  export HOMEBREW_DOWNLOAD_CONCURRENCY=auto
 
 fi
 

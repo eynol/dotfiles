@@ -44,7 +44,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -135,3 +135,12 @@ if [ -d $HOME/.docker/completions ]; then
   compinit
   # End of Docker CLI completions
 fi
+export PATH=/Users/bytedance/.local/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/Users/bytedance/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
