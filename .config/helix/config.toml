@@ -1,10 +1,25 @@
+[editor]
+bufferline = 'always'
+line-number = 'relative'
+true-color = true
+
 [editor.lsp]
 display-inlay-hints = true
 
+[editor.cursor-shape]
+insert = 'bar'
+normal = 'block'
+select = 'underline'
+
+[editor.file-picker]
+hidden = false
 
 [keys.insert]
 Cmd-s = ["normal_mode", ":write"] # Cmd or Win or Meta and 's' to write
+
+
 [keys.normal]
+esc = [ 'collapse_selection', 'keep_primary_selection' ]
 Cmd-s = ":w" # Cmd or Win or Meta and 's' to write
 Z = { Q = ":quit!", Z = ":x" }
 C-y = [
