@@ -1,3 +1,7 @@
+[editor.lsp]
+display-inlay-hints = true
+
+
 [keys.insert]
 Cmd-s = ["normal_mode", ":write"] # Cmd or Win or Meta and 's' to write
 [keys.normal]

@@ -3,6 +3,8 @@
 *.edit.sh
 # ignore by default
 /*
+!.config/helix
+!.config/kitty
 !bin/
 !.nvim-profiles
 !scripts
