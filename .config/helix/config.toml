@@ -1,0 +1,12 @@
+[keys.insert]
+Cmd-s = ["normal_mode", ":write"] # Cmd or Win or Meta and 's' to write
+[keys.normal]
+Cmd-s = ":w" # Cmd or Win or Meta and 's' to write
+Z = { Q = ":quit!", Z = ":x" }
+C-y = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]

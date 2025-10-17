@@ -25,15 +25,21 @@ if command -v fnm 2>&1 >/dev/null; then
   eval "$(fnm env)"
 fi
 
-
+if command -v yazi 2>&1 >/dev/null; then
+  function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+  }
+fi
 # archlinux update command
-if command -v pacman 2>&1 >/dev/null;
-then
+if command -v pacman 2>&1 >/dev/null; then
   alias update="sudo pacman -Syu"
 fi
 # apt update
-if command -v apt 2>&1 >/dev/null;
-then
+if command -v apt 2>&1 >/dev/null; then
   alias update="sudo apt update &&sudo apt upgrade"
 fi
 #
@@ -42,8 +48,8 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # editor
-export VISUAL=nvim
-export EDITOR=nvim
+export VISUAL=hx
+export EDITOR=hx
 
 alias v='nvim'
 alias s="kitten ssh"
@@ -130,7 +136,11 @@ function _dur {
     ;;
   fun | f)
     #list all custom bash functions defined
-    typeset -F | col 3 | grep -v _ | xargs | fold -sw 60
+    if [ -n "$ZSH_VERSION" ]; then
+      typeset -f + | grep -v _ | xargs | fold -sw 60
+    else
+      typeset -F | col 3 | grep -v _ | xargs | fold -sw 60
+    fi
     ;;
   def | d)
     #show definition of function $1
