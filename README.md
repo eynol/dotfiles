@@ -4,30 +4,30 @@ This is the very first repo to clone after switch to a new machine. The purposes
 
 - Automation
 
-    Shell script makes it easy to automating installing softwares and setting up your development environment. 
+  Shell script makes it easy to automating installing softwares and setting up your development environment.
 
 - Repeating operations
 
-    For example, backup files.
+  For example, backup files.
 
 - Saving Time
 
-    Spend time writing a script and save time at some time in the future.
+  Spend time writing a script and save time at some time in the future.
 
 - Config files
 
-    Config files can be shared between machines or operating systems. Don't waste time to google it and configure it again and again.
+  Config files can be shared between machines or operating systems. Don't waste time to google it and configure it again and again.
 
-    > nerd font download [link](https://www.nerdfonts.com/font-downloads)
+  > nerd font download [link](https://www.nerdfonts.com/font-downloads)
 
 - Other Intents
 
-    IOT stuff.
+  IOT stuff.
 
 ## Install
 
 ```bash
-curl -Lks https://github.com/eynol/dotfiles/raw/master/scripts/install-dotfiles.sh | /bin/bash
+curl -Lks https://cnb.cool/cnb.heitaov.cn/dotfiles/-/git/raw/master/scripts/install-dotfiles.sh | /bin/bash
 ```
 
 The install script does the following things.
@@ -38,7 +38,7 @@ The install script does the following things.
   - if checkout error, rerun again to use `egrep  "\s+"` to select files and mv these files to `.config-backup`
 - In the end, `git config status.showUntrackedFiles no`
 
-When install is done, reload your shell or source your rc file. 
+When install is done, reload your shell or source your rc file.
 You can use `config` as `git` command to manage your dotfiles.
 
 ## Instruction
@@ -54,7 +54,7 @@ It shows a simple way to backup your dotfiles.
 Basicly, it use `.zshrc` or `.bashrc` to source other config files.
 
 ```bash
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 # read common shared config
 [ -s "$HOME/.shell.rc.sh" ] && source $HOME/.shell.rc.sh
@@ -65,15 +65,15 @@ In the `$HOME/.shell.rc.sh`, it does the following things.
 - Add `$HOME/bin` to `$PATH`, so that we can use local binaries
 - Add device private scripts to `$PATH` in `$HOME/device-scripts`
 
-- Set environment variables:  `RUSTUP_DIST_SERVER` 
+- Set environment variables: `RUSTUP_DIST_SERVER`
 - Source `$HOME/.shell.secret.sh` if it exists
 - Source `$HOME/.shell.device.sh` if it exists
 - Define editor: `export EDITOR=nvim`
-- Define aliases: 
+- Define aliases:
   - `lg` : lazygit
   - `t` :
   - `v` : `$EDITOR`
-  - `config` : `git --git-dir=$HOME/.cfg/ --work-tree=$HOME `
+  - `config` : `git --git-dir=$HOME/.cfg/ --work-tree=$HOME`
   - `lazyconfig`: `lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME`
 - Os related configs
 
