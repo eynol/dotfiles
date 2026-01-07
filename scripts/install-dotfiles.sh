@@ -1,10 +1,12 @@
 #!/bin/bash
-echo "install dotfiles from git repo git@github.com:eynol/dotfiles.git"
+REPO=https://cnb.cool/cnb.heitaov.cn/dotfiles
+
+echo "install dotfiles from git repo $REPO"
 if [ -d "$HOME/.cfg" ]; then
   echo .cfg folder exist, skip clone git repo
 else
   echo .cfg folder not exist, clone git repo
-  git clone --bare git@github.com:eynol/dotfiles.git $HOME/.cfg
+  git clone --bare $REPO $HOME/.cfg
 fi
 function config {
   git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
