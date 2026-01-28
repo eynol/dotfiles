@@ -105,6 +105,7 @@ function config-github-user-local() {
 # see http://github.com/durdn/cfg/
 # durdn/cfg related commands {{{
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias configrav='git --git-dir=$HOME/.cfg/ --work-tree=$HOME pull --rebase --autostash -v'
 alias lazyconfig='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias zshconfig="$EDITOR ~/.zshrc"
 
