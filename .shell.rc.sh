@@ -48,8 +48,8 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # editor
-export VISUAL=hx
-export EDITOR=hx
+export VISUAL=nvim
+export EDITOR=nvim
 
 alias v='nvim'
 alias s="kitten ssh"
@@ -65,7 +65,7 @@ elif [ -n "$BASH_VERSION" ]; then
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 else
   # assume something else
-  [ -z 0]
+  [ -z 0 ]
 fi
 
 _zsh_ifdo() {
