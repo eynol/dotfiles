@@ -5,6 +5,11 @@
 -- Motivation: Less clutter in completion windows and a more direct usage of snippets
 vim.g.lazyvim_mini_snippets_in_completion = true
 
+local cwd = vim.fn.getcwd()
+
+if vim.fs.root(cwd, "package.json") then
+  vim.o.backupdir = "~/.local/state/nvim/backup/"
+end
 -- NOTE: Please also read:
 -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-snippets.md#expand
 -- :h MiniSnippets-session

@@ -1,10 +1,7 @@
-local util = require("lspconfig.util")
-local lsp = vim.lsp
-
-local function dd(arg)
-  local objects = vim.tbl_map(vim.inspect, { arg })
-  print(unpack(objects))
-end
+-- local function dd(arg)
+--   local objects = vim.tbl_map(vim.inspect, { arg })
+--   print(unpack(objects))
+-- end
 
 local root_file = {
   ".eslintrc",
@@ -21,6 +18,21 @@ local root_file = {
   "eslint.config.cts",
 }
 
+local fe_project_root_marker = {
+  "package-lock.json",
+  "eden.monorepo.json",
+  "yarn.lock",
+  "pnpm-lock.yaml",
+  "bun.lockb",
+  "bun.lock",
+}
+local cwd = vim.fn.getcwd()
+local nodePath = ""
+-- if inside a eden project
+if vim.fs.root(cwd, { "eden.monorepo.json" }) then
+  nodePath = "infra/node_modules"
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -31,7 +43,7 @@ return {
         eslint = {
           settings = {
             -- root_dir = "./",
-            nodePath = "infra/node_modules/",
+            nodePath = nodePath,
             -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
             workingDirectories = { { mode = "auto" } },
             format = false,
@@ -41,8 +53,7 @@ return {
             -- As stated in the documentation above, this LSP supports monorepos and simple projects.
             -- We select then from the project root, which is identified by the presence of a package
             -- manager lock file.
-            local root_markers =
-              { "package-lock.json", "eden.monorepo.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" }
+            local root_markers = fe_project_root_marker
             -- Give the root markers equal priority by wrapping them in a table
             root_markers = vim.fn.has("nvim-0.11.3") == 1 and { root_markers, { ".git" } }
               or vim.list_extend(root_markers, { ".git" })
@@ -60,18 +71,18 @@ return {
             --
             -- Eslint used to support package.json files as config files, but it doesn't anymore.
             -- We keep this for backward compatibility.
-            local filename = vim.api.nvim_buf_get_name(bufnr)
-            local eslint_config_files_with_package_json = util.insert_package_json(root_file, "eslintConfig", filename)
-            local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
-              path = filename,
-              type = "file",
-              limit = 1,
-              upward = true,
-              stop = vim.fs.dirname(project_root),
-            })[1]
-            if not is_buffer_using_eslint then
-              return
-            end
+            -- local filename = vim.api.nvim_buf_get_name(bufnr)
+            -- local eslint_config_files_with_package_json = util.insert_package_json(root_file, "eslintConfig", filename)
+            -- local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
+            --   path = filename,
+            --   type = "file",
+            --   limit = 1,
+            --   upward = true,
+            --   stop = vim.fs.dirname(project_root),
+            -- })[1]
+            -- if not is_buffer_using_eslint then
+            --   return
+            -- end
 
             on_dir(project_root)
             -- dd(project_root)
