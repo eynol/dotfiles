@@ -74,6 +74,11 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew z docker docker-compose sudo)
 
+# Performance optimizations for zsh completion
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path ~/.zsh/cache
+skip_global_compinit=1
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -124,16 +129,14 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # read common shared config
 [ -s "$HOME/.shell.rc.sh" ] && source $HOME/.shell.rc.sh
 
-# performance detect
-# zprof
 
-if [ -d $HOME/.docker/completions ]; then  
-  # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-  fpath=($HOME/.docker/completions $fpath)
-  autoload -Uz compinit
-  compinit
-  # End of Docker CLI completions
-fi
+# if [ -d $HOME/.docker/completions ]; then  
+#   # The following lines have been added by Docker Desktop to enable Docker CLI completions.
+#   fpath=($HOME/.docker/completions $fpath)
+#   autoload -Uz compinit
+#   compinit
+#   # End of Docker CLI completions
+# fi
 export PATH=/Users/bytedance/.local/bin:$PATH
 
 # pnpm
@@ -143,3 +146,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+# performance detect
+# zprof
