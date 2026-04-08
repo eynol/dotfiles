@@ -18,18 +18,18 @@ if is_macos then
   -- 这里写 macOS 专属配置，比如映射专属快捷键、设置特定选项
   -- 示例：macOS 下设置剪贴板与系统共享
   --  vim.opt.clipboard = "unnamedplus"
-  vim.keymap.set("n", "<D-s>", ":w<CR>")
-  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  map("n", "<D-s>", "<cmd>w<CR>")
+  map("v", "<D-c>", '"+y') -- Copy
 else
   print("当前不是 macOS 环境")
 end
 if vim.g.neovide then
-  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
-  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
-  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
-  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
-  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
-  vim.keymap.set("i", "<D-v>", "<C-R>+") -- Paste insert mode
+  map("n", "<D-s>", ":w<CR>", { silent = true, desc = "save file" }) -- Save
+  map("v", "<D-c>", '"+y', { desc = "Copy to system clipboard" }) -- Copy
+  map("n", "<D-v>", '"+P') -- Paste normal mode
+  map("v", "<D-v>", '"+P') -- Paste visual mode
+  map("c", "<D-v>", "<C-R>+") -- Paste command mode
+  map("i", "<D-v>", "<C-R>+") -- Paste insert mode
 end
 -- if vim.fn.getenv("USER") == "bytedance" then
 --   local get_git_root_dir = function()
