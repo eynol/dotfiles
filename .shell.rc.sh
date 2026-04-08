@@ -163,10 +163,11 @@ function _dur {
 # }}}
 
 # OSX specific config {{{
-if [ $(uname) = "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
 
   #aliases {{{
-
+  alias awdl_down='sudo ifconfig awdl0 down'
+  alias awdl_up='sudo ifconfig awdl0 up'
   # }}}
 
   #open macvim
