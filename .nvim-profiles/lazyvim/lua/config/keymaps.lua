@@ -12,14 +12,24 @@ local os_info = vim.loop.os_uname()
 -- 判断是否为 macOS
 local is_macos = os_info.sysname == "Darwin"
 
+-- map("v", "<M-j>", ":'<,'>m '>+1<cr>gv=gv", { desc = "Move down" })
+-- map("v", "<M-k>", ":'<,'>m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "<M-j>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move down" })
+map("v", "<M-k>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move up" })
+map("v", "<M-up>", "<cmd>m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "<M-down>", "<cmd>m '>+1<cr>gv=gv", { desc = "Move down" })
+map("n", "<M-up>", "<cmd>m .-2<cr>==", { desc = "Move down" })
+map("n", "<M-down>", "<cmd>m .+1<cr>==", { desc = "Move up" })
+map("i", "<M-up>", "<cmd>m .-2<cr>", { desc = "Move down" })
+map("i", "<M-down>", "<cmd>m .+1<cr>", { desc = "Move up" })
 -- 后续使用：if 条件判断执行对应逻辑
 if is_macos then
   print("当前运行环境是 macOS")
   -- 这里写 macOS 专属配置，比如映射专属快捷键、设置特定选项
   -- 示例：macOS 下设置剪贴板与系统共享
   --  vim.opt.clipboard = "unnamedplus"
-  map("n", "<D-s>", "<cmd>w<CR>")
-  map("v", "<D-c>", '"+y') -- Copy
+  map("n", "<D-s>", "<cmd>w<CR>", { desc = "Save" })
+  map("v", "<D-c>", '"+y', { desc = "Copy to clipboard" }) -- Copy
 else
   print("当前不是 macOS 环境")
 end
