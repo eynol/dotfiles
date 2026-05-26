@@ -111,16 +111,16 @@ source $ZSH/oh-my-zsh.sh
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Don't add certain commands to the history file.
-
-export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
+# (zsh uses HISTORY_IGNORE, not HISTIGNORE)
+export HISTORY_IGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history.
-
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# (zsh uses precmd hook, not PROMPT_COMMAND)
+precmd() { history -a; }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

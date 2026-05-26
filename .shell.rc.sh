@@ -22,7 +22,11 @@ fi
 # fnm
 if command -v fnm 2>&1 >/dev/null; then
   export FNM_NODE_DIST_MIRROR=https://mirrors.ustc.edu.cn/node/
-  eval "$(fnm env)"
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(fnm env --shell=zsh)"
+  else
+    eval "$(fnm env)"
+  fi
 fi
 
 if command -v yazi 2>&1 >/dev/null; then
@@ -188,12 +192,19 @@ if [ "$(uname)" = "Darwin" ]; then
   }
 
   #homebrew git autocompletions {{{
-  if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ] && [ -n "$BASH_VERSION" ]; then
-    . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+  if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+      . "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+    fi
   fi
   #}}}
 
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # Homebrew env (hardcoded to avoid slow `brew shellenv` Ruby script)
+  export HOMEBREW_PREFIX="/opt/homebrew"
+  export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+  export HOMEBREW_REPOSITORY="/opt/homebrew"
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+  export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
   export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
   export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
   export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"

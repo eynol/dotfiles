@@ -28,7 +28,8 @@ if is_macos then
   -- 这里写 macOS 专属配置，比如映射专属快捷键、设置特定选项
   -- 示例：macOS 下设置剪贴板与系统共享
   --  vim.opt.clipboard = "unnamedplus"
-  map("n", "<D-s>", "<cmd>w<CR>", { desc = "Save" })
+  map({ "n", "v" }, "<D-s>", "<cmd>w<CR>", { desc = "Save" })
+  map({ "i" }, "<D-s>", "<cmd>w<CR><esc>", { desc = "Save" })
   map("v", "<D-c>", '"+y', { desc = "Copy to clipboard" }) -- Copy
 else
   print("当前不是 macOS 环境")
@@ -111,3 +112,8 @@ local TSComment = function()
 end
 map("n", "gcC", TSComment, { expr = true, desc = "TSComment Line" })
 map("v", "gC", TSComment, { expr = true, desc = "TSComment Convert" })
+
+-- local incremental_selection = require("nvim-treesitter.incremental_selection")
+-- vim.keymap.set("n", "<leader>ss", incremental_selection.init_selection, { desc = "[S]tart Selection" })
+-- vim.keymap.set("v", "<leader>si", incremental_selection.node_incremental, { desc = "[I]ncrement" })
+-- vim.keymap.set("v", "<leader>sd", incremental_selection.node_decremental, { desc = "[D]ecrement" })
