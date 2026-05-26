@@ -1,6 +1,6 @@
 # use following line to record zsh bootstrap
 # and use zprof to display result at end of this file
-# zmodload zsh/zprof
+zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -11,7 +11,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jonathan" # set by `omz`
+ZSH_THEME="superjarin" # set by `omz`
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -116,6 +116,11 @@ source $ZSH/oh-my-zsh.sh
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# History configuration
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+
 # Don't add certain commands to the history file.
 # (zsh uses HISTORY_IGNORE, not HISTIGNORE)
 export HISTORY_IGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
@@ -127,6 +132,9 @@ export HISTORY_IGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 # shells instead of the default "last window closed" history.
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -153,4 +161,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 # performance detect
-# zprof
+zprof
