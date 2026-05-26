@@ -1,5 +1,5 @@
 # use following line to record zsh bootstrap
-# and uze  zprof to display result at end of this file
+# and use zprof to display result at end of this file
 # zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -78,6 +78,12 @@ plugins=(git brew z sudo)
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.zsh/cache
 skip_global_compinit=1
+
+# Skip compaudit (security check on completion dirs) — saves ~25ms
+ZSH_DISABLE_COMPFIX=true
+
+# Skip auto-compile check for .zwc files — saves ~7ms
+DISABLE_AUTO_COMPILE=true
 
 source $ZSH/oh-my-zsh.sh
 
