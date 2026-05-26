@@ -72,7 +72,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew z docker docker-compose sudo)
+plugins=(git brew z sudo)
 
 # Performance optimizations for zsh completion
 zstyle ':completion:*' use-cache yes
@@ -119,8 +119,8 @@ export HISTORY_IGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 
 # Make new shells get the history lines from all previous
 # shells instead of the default "last window closed" history.
-# (zsh uses precmd hook, not PROMPT_COMMAND)
-precmd() { history -a; }
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
