@@ -1,3 +1,4 @@
+typeset -U fpath
 # use following line to record zsh bootstrap
 # and use zprof to display result at end of this file
 zmodload zsh/zprof
