@@ -7,6 +7,16 @@ zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+echo $fpath
+echo $ZSH_COMPDUMP
+
+if [ -z "$ZSH_COMPDUMP" ]; then
+  if [[ -n "$KITTY_PID" ]]; then
+    export  ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-kitty-${HOST/.*/}-${ZSH_VERSION}"
+  else
+    export  ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${HOST/.*/}-${ZSH_VERSION}"
+  fi
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
